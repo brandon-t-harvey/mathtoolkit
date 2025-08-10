@@ -687,11 +687,15 @@ public final class MathUtilities {
 
         return FastMath.hypot( x, y );
     }
+    
+    public static long getBase10Exponent( final double val ) {
+        return ( long ) FastMath.floor( FastMath.log10( val ) );
+    }
 
     // Given a number, round up to the nearest power of ten (times 1, 2, or 5).
     // NOTE: The argument must be strictly positive.
     public static double roundUp( final double val ) {
-        final int base10Exponent = ( int ) FastMath.floor( FastMath.log10( val ) );
+        final long base10Exponent = getBase10Exponent( val );
         double valAdjusted = val;
         valAdjusted *= FastMath.pow( 10.0d, -base10Exponent );
         if ( valAdjusted > 5.0d ) {
